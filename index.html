@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robozinho Mines LuvaBet</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0780CC;
+        }
+
+        h1, h2{
+            margin-bottom: 0px;
+            color: rgb(8, 73, 8);
+        }
+
+        h4, h5{
+            margin-top: 0px;
+            color: rgb(8, 73, 8);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 105px); /* Aumentar a largura dos quadrados */
+            grid-template-rows: repeat(5, 75px); /* Aumentar a altura dos quadrados */
+            gap: 15px; /* Aumentar o espaçamento entre os quadrados */
+            margin: 20px; /* Adicionar margem externa para separação dos quadrados */
+        }
+
+        .quadrado {
+            background-color: blue;
+            background-image: url('azul.png');
+            background-size: cover;
+            margin: 5px;
+            width: 110px;
+            height: 80px;
+            border-radius: 10px;        
+        }
+
+        .estrela {
+            background-image: url('estrelas.png');
+            background-repeat: no-repeat;
+            background-size: 73%; /* Ajuste o valor para diminuir ou aumentar o tamanho */
+            background-position: center; /* Centraliza a imagem */
+            background-color: #F89E16
+        }
+
+        .botao-iniciar, .botao-limpar {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        .botao-limpar {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>MINE$</h1>
+    <h4>LUVA.BET</h4>
+    <div class="container">
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+        <div class="quadrado"></div>
+    </div>
+    <h2>Selecione o número de Minas : 3</h2>
+    <h5>Após terminar a rodada, colete o lucro e inicie outra combinação</h5>
+    <button id="btn-iniciar" class="botao-iniciar" onclick="substituirPorEstrelas()">INICIAR</button>
+    <button class="botao-limpar" onclick="limparEstrelas()">LIMPAR</button>
+
+    <script>
+        function substituirPorEstrelas() {
+            var quadrados = document.getElementsByClassName('quadrado');
+            var numEstrelas = 4;
+            var estrelasIndex = gerarNumerosAleatorios(numEstrelas, quadrados.length);
+
+            for (var i = 0; i < numEstrelas; i++) {
+                if (!quadrados[estrelasIndex[i]].classList.contains('estrela')) {
+                    quadrados[estrelasIndex[i]].classList.add('estrela');
+                }
+            }
+
+            // Desabilitar o botão "INICIAR"
+        var btnIniciar = document.getElementById('btn-iniciar');
+        btnIniciar.disabled = true;
+    }
+
+    function limparEstrelas() {
+        var quadrados = document.getElementsByClassName('quadrado');
+        for (var i = 0; i < quadrados.length; i++) {
+            quadrados[i].classList.remove('estrela');
+        }
+
+        // Habilitar o botão "INICIAR"
+        var btnIniciar = document.getElementById('btn-iniciar');
+        btnIniciar.disabled = false;
+    }    
+
+    function gerarNumerosAleatorios(numNumeros, maxValor) {
+        var numeros = [];
+        while (numeros.length < numNumeros) {
+            var randomNum = Math.floor(Math.random() * maxValor);
+            if (numeros.indexOf(randomNum) === -1) {
+                numeros.push(randomNum);
+            }
+        }
+        return numeros;
+    }
+
+
+    function substituirPorImagens() {
+            var quadrados = document.getElementsByClassName('quadrado');
+            var novaImagem = 'azul.png';
+
+            for (var i = 0; i < quadrados.length; i++) {
+                quadrados[i].style.backgroundImage = 'url(' + novaImagem + ')';
+                quadrados[i].style.backgroundColor = 'transparent';
+            }
+        }
+    </script>
+
+</body>
+</html>
